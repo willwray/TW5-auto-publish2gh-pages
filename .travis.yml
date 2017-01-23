@@ -2,11 +2,10 @@ language: node_js
 node_js:
   - "node"
 before_script:
-  - npm install -g tiddlywiki
   - tiddlywiki --version
   - pwd
   - ls
-script: tiddlywiki ./*wiki --build
+script: tiddlywiki ./*wiki --version --verbose --build
 
 after_success:
   - bash ./publish.sh
