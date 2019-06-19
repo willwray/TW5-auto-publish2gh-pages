@@ -1,14 +1,21 @@
 language: node_js
 node_js:
   - "node"
+
 before_script:
   - tiddlywiki --version
   - pwd
   - ls
+
 script: tiddlywiki ./*wiki --version --verbose --build
 
-after_success:
-  - bash ./publish.sh
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: output
+  on:
+    branch: master
 
 branches:
   only:
